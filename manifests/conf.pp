@@ -81,6 +81,7 @@ define sudo::conf(
   exec {"sudo-syntax-check for file ${sudo_config_dir}${priority}_${name}":
     command     => "visudo -c -f '${sudo_config_dir_real}${priority}_${name}' || ( rm -f '${sudo_config_dir_real}${priority}_${name}' && exit 1)",
     refreshonly => true,
+    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
   }
 
 }
